@@ -2,74 +2,330 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Promptly — AIプロンプト管理Chrome拡張機能</title>
-<style>
-  body{font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;
-       max-width:720px;margin:0 auto;padding:48px 24px;line-height:1.8;
-       color:#1a1a1a;background:#fff}
-  h1{font-size:32px;margin-bottom:8px}
-  h2{font-size:20px;margin-top:40px;border-bottom:1px solid #eee;padding-bottom:8px}
-  .lead{color:#666;font-size:16px}
-  .price{background:#fff7ed;border:1px solid #fb923c;border-radius:12px;
-         padding:20px;margin:24px 0}
-  .price strong{font-size:24px;color:#c2410c}
-  table{width:100%;border-collapse:collapse;margin:16px 0}
-  th,td{border:1px solid #eee;padding:10px;text-align:left;font-size:14px}
-  th{background:#fafafa}
-  footer{margin-top:56px;padding-top:24px;border-top:1px solid #eee;
-         color:#666;font-size:13px}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promptly — AIプロンプトを、一瞬で。 | ChatGPT・Claude・Gemini・Perplexity対応のプロンプト管理Chrome拡張</title>
+<meta name="description" content="よく使うAIプロンプトを保存して、Ctrl+Kで瞬時に呼び出し。スラッシュコマンド・変数・4サイト対応のプロンプト管理Chrome拡張機能「Promptly」。無料で10個まで、Proは¥3,980買い切り。">
+
+<!-- OGP -->
+<meta property="og:title" content="Promptly — AIプロンプトを、一瞬で。">
+<meta property="og:description" content="ChatGPT・Claude・Gemini・Perplexity対応。Ctrl+Kで呼び出すプロンプト管理Chrome拡張。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="./assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/icon-32.png">
+<link rel="apple-touch-icon" href="./assets/icon-128.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <h1>Promptly</h1>
-  <p class="lead">ChatGPT・Claude・Gemini・Perplexity で使うプロンプトを、
-  ショートカットキーで瞬時に呼び出せる Chrome 拡張機能です。</p>
 
-  <h2>できること</h2>
-  <ul>
-    <li>よく使うプロンプトを登録し、カテゴリで整理</li>
-    <li>AIサイトの入力欄で <code>Ctrl+K</code> を押して検索・挿入</li>
-    <li>入力欄に <code>/review</code> のように打つとサジェスト表示</li>
-    <li><code>{{変数}}</code> を含むプロンプトは、挿入時に値を入力</li>
-    <li>プロンプトのエクスポート・インポート(共有・バックアップ)</li>
-  </ul>
+<!-- ▼▼ 差し替え箇所: 公開時に以下2つのURLを変更 ▼▼
+     1) CHROME_STORE_URL : Chrome Web Store 公開後のURL (現在は準備中表示)
+     2) 購入ボタンの href : 本番Stripe決済リンク (現在はテスト用)
+-->
 
-  <h2>料金</h2>
-  <div class="price">
-    <strong>Pro版 3,980円(税込)</strong><br>
-    買い切り・サブスクリプションではありません
+<header class="site">
+  <div class="container inner">
+    <a class="brand" href="#">
+      <img src="./assets/icon-128.png" alt="Promptly">
+      Promptly
+    </a>
+    <nav class="main">
+      <a href="#features" class="hide-sp">機能</a>
+      <a href="#how" class="hide-sp">使い方</a>
+      <a href="#pricing" class="hide-sp">料金</a>
+      <a href="#faq" class="hide-sp">FAQ</a>
+      <a href="#pricing" class="btn btn-primary btn-sm">Pro を購入</a>
+    </nav>
   </div>
+</header>
 
-  <table>
-    <tr><th>機能</th><th>無料版</th><th>Pro版</th></tr>
-    <tr><td>プロンプト登録数</td><td>10件まで</td><td>無制限</td></tr>
-    <tr><td>コマンドパレット</td><td>○</td><td>○</td></tr>
-    <tr><td>スラッシュコマンド</td><td>○</td><td>○</td></tr>
-    <tr><td>変数機能</td><td>○</td><td>○</td></tr>
-    <tr><td>対応サイト(4種)</td><td>○</td><td>○</td></tr>
-    <tr><td>利用可能デバイス数</td><td>—</td><td>3台まで</td></tr>
-  </table>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">◆ ChatGPT・Claude・Gemini・Perplexity 対応</div>
+    <h1>AIプロンプトを、<span class="ac">一瞬で。</span></h1>
+    <p class="lead">
+      毎回メモ帳からコピペしていませんか?<br>
+      よく使うプロンプトを登録して、<kbd class="k">Ctrl</kbd> + <kbd class="k">K</kbd> で呼び出し。
+      そのままAIの入力欄へ挿入されます。
+    </p>
+    <div class="cta">
+      <!-- CHROME_STORE_URL: 公開後に差し替え -->
+      <a class="btn btn-primary" href="#pricing">無料で始める (Chrome拡張)</a>
+      <a class="btn btn-ghost" href="#how">30秒で分かる使い方</a>
+    </div>
+    <p class="note">無料版はプロンプト10個まで・クレジットカード不要 / Chrome Web Store 公開準備中</p>
 
-  <h2>購入からご利用まで</h2>
-  <ol>
-    <li>本サイトの購入ボタンからクレジットカードでお支払い</li>
-    <li>決済完了後、ご登録のメールアドレスへライセンスキーを自動送付</li>
-    <li>Chrome拡張機能の設定画面にライセンスキーを入力</li>
-    <li>Pro版の機能が有効になります</li>
-  </ol>
-  <p>※ 現在、決済システムの準備中です。近日公開予定です。</p>
+    <!-- パレットのモックアップ -->
+    <div class="mock-wrap">
+      <div class="mock-glow"></div>
+      <div class="palette" role="img" aria-label="Promptlyのコマンドパレットのイメージ">
+        <div class="p-search">
+          <span>🔍</span>
+          <span class="q">レビュー</span><span class="caret"></span>
+          <span class="p-esc">ESC</span>
+        </div>
+        <ul>
+          <li class="sel">
+            <span class="ico">◆</span>
+            <span>
+              <span class="t">コードレビュー</span>
+              <span class="s">/review</span><br>
+              <span class="b">以下のコードをレビューして、改善点を3つ挙げてください:</span>
+            </span>
+            <span class="enter">⏎</span>
+          </li>
+          <li>
+            <span class="ico">◆</span>
+            <span>
+              <span class="t">英文レビュー依頼</span>
+              <span class="s">/engrev</span><br>
+              <span class="b">以下の英文を自然なビジネス英語に修正してください:</span>
+            </span>
+          </li>
+          <li>
+            <span class="ico">◆</span>
+            <span>
+              <span class="t">要約 (箇条書き)</span>
+              <span class="s">/sum</span><br>
+              <span class="b">以下を{{個数}}個の箇条書きで要約してください:</span>
+            </span>
+          </li>
+        </ul>
+        <div class="p-foot">
+          <span>↑↓ 選択 &nbsp; ⏎ 挿入 &nbsp; ESC 閉じる</span>
+          <span><span class="mark">◆</span> Promptly</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <h2>動作環境</h2>
-  <p>Google Chrome(最新版)。ChatGPT、Claude、Gemini、Perplexity の各サイトで動作します。</p>
+<!-- ============ 課題 ============ -->
+<section class="block alt">
+  <div class="container">
+    <div class="sec-head">
+      <div class="tag">PROBLEM</div>
+      <h2>プロンプト、どこに保存してますか?</h2>
+      <p>メモ帳・Notion・Slackの自分DM… 探して、開いて、コピーして、貼り付けて。<br>その数十秒が、1日に何度も発生していませんか。</p>
+    </div>
+    <div class="grid cols3">
+      <div class="card">
+        <div class="ic">📋</div>
+        <h3>コピペの往復</h3>
+        <p>AIとメモアプリをタブで行ったり来たり。集中が途切れ、思考が止まる。</p>
+      </div>
+      <div class="card">
+        <div class="ic">🔍</div>
+        <h3>どこに書いたか忘れる</h3>
+        <p>「あの良かったプロンプト、どこに保存したっけ…」。結局ゼロから書き直し。</p>
+      </div>
+      <div class="card">
+        <div class="ic">✏️</div>
+        <h3>毎回書き換える手間</h3>
+        <p>言語や対象だけ変えたいのに、全文を編集。定型なのに定型化できていない。</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <h2>返金について</h2>
-  <p>デジタル商品の性質上、購入後の返金は原則承っておりません。
-  ただし、拡張機能が正常に動作しない等の不具合がある場合は、
-  購入後14日以内にご連絡いただければ対応いたします。</p>
+<!-- ============ 機能 ============ -->
+<section class="block" id="features">
+  <div class="container">
+    <div class="sec-head">
+      <div class="tag">FEATURES</div>
+      <h2>入力欄から、一歩も動かない。</h2>
+      <p>Promptly はAIサイトの中で完結します。</p>
+    </div>
+    <div class="grid cols3">
+      <div class="card">
+        <div class="ic">⌨️</div>
+        <h3>コマンドパレット</h3>
+        <p><kbd class="k">Ctrl</kbd>+<kbd class="k">K</kbd> で検索パレットを起動。曖昧な日本語検索に対応し、Enterでカーソル位置に挿入。</p>
+        <p class="hint">ショートカットキーは設定で変更できます</p>
+      </div>
+      <div class="card">
+        <div class="ic">⚡</div>
+        <h3>スラッシュコマンド</h3>
+        <p>入力欄で <kbd class="k">/review</kbd> のように打つと候補が表示。TabかEnterで即挿入。もはや最速。</p>
+      </div>
+      <div class="card">
+        <div class="ic">🧩</div>
+        <h3>変数プレースホルダー</h3>
+        <p><code>{{言語}}</code> のような変数を含むプロンプトは、挿入時に入力ダイアログが開き、その場で穴埋め。</p>
+      </div>
+      <div class="card">
+        <div class="ic">🌐</div>
+        <h3>主要4サイト対応</h3>
+        <p>ChatGPT / Claude / Gemini / Perplexity の入力欄に直接挿入。サイトごとの違いは意識不要。</p>
+      </div>
+      <div class="card">
+        <div class="ic">🗂️</div>
+        <h3>整理と検索</h3>
+        <p>カテゴリ・お気に入り・使用回数・並び替え。ひらがな/カタカナを区別しない日本語ファジー検索。</p>
+      </div>
+      <div class="card">
+        <div class="ic">📦</div>
+        <h3>エクスポート / インポート</h3>
+        <p>選択したプロンプトをJSONで書き出し。チームや友人との共有、バックアップ・引っ越しに。</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <p>&copy; 2026 Promptly</p>
-  </footer>
+<!-- ============ 使い方 ============ -->
+<section class="block alt" id="how">
+  <div class="container">
+    <div class="sec-head">
+      <div class="tag">HOW IT WORKS</div>
+      <h2>使い方は、3ステップ。</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>プロンプトを登録</h3>
+        <p>ツールバーのPromptlyアイコンから「+追加」。タイトル・本文・ショートカット名を入れるだけ。</p>
+      </div>
+      <div class="step">
+        <h3>AIサイトで呼び出す</h3>
+        <p>ChatGPTなどの画面で <kbd class="k">Ctrl</kbd>+<kbd class="k">K</kbd>、または入力欄に <kbd class="k">/</kbd> とショートカット名。</p>
+      </div>
+      <div class="step">
+        <h3>Enterで挿入</h3>
+        <p>選んでEnter。カーソル位置にそのまま挿入されるので、続きを書いて送信するだけ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 料金 ============ -->
+<section class="block" id="pricing">
+  <div class="container">
+    <div class="sec-head">
+      <div class="tag">PRICING</div>
+      <h2>シンプルな料金。サブスクなし。</h2>
+      <p>まずは無料で。気に入ったら、一度きりのお支払いでずっと使えます。</p>
+    </div>
+    <div class="pricing">
+      <div class="plan">
+        <h3>Free</h3>
+        <div class="price">¥0</div>
+        <div class="per">ずっと無料</div>
+        <ul>
+          <li>プロンプト登録 <strong>10個</strong>まで</li>
+          <li>コマンドパレット (Ctrl+K)</li>
+          <li>スラッシュコマンド</li>
+          <li>変数プレースホルダー</li>
+          <li>4サイト対応</li>
+          <li>エクスポート / インポート</li>
+        </ul>
+        <!-- CHROME_STORE_URL: 公開後に差し替え -->
+        <a class="btn btn-ghost" href="#" onclick="alert('Chrome Web Store 公開準備中です。もうしばらくお待ちください。'); return false;">Chrome に追加 (準備中)</a>
+      </div>
+      <div class="plan pro">
+        <div class="ribbon">おすすめ</div>
+        <h3>Pro</h3>
+        <div class="price">¥3,980 <small>(税込)</small></div>
+        <div class="per">買い切り・追加費用なし</div>
+        <ul>
+          <li>プロンプト登録 <strong>無制限</strong></li>
+          <li>Freeの全機能</li>
+          <li><strong>3台</strong>までのデバイスで利用可</li>
+          <li>今後のアップデートも追加費用なし</li>
+          <li>メールサポート</li>
+        </ul>
+        <!-- 購入リンク: 本番移行時に本番Stripeリンクへ差し替え -->
+        <a class="btn btn-primary" href="https://buy.stripe.com/test_aFa8wI8PI4kf4cdgVGeME00" target="_blank" rel="noopener">Pro を購入する</a>
+      </div>
+    </div>
+    <p style="text-align:center; color: var(--dim); font-size: 12.5px; margin-top: 22px;">
+      決済はStripeで安全に処理されます。購入後、ライセンスキーがメールで届きます。
+    </p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="block alt" id="faq">
+  <div class="container">
+    <div class="sec-head">
+      <div class="tag">FAQ</div>
+      <h2>よくある質問</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>対応しているブラウザは?</summary>
+        <div class="a">Google Chrome (最新版) に対応しています。Chromium系ブラウザ (Edge、Brave等) でも動作する場合がありますが、公式サポートはChromeのみです。</div>
+      </details>
+      <details>
+        <summary>対応しているAIサービスは?</summary>
+        <div class="a">ChatGPT (chatgpt.com)、Claude (claude.ai)、Gemini (gemini.google.com)、Perplexity (perplexity.ai) の4サービスです。今後のアップデートで追加予定です。</div>
+      </details>
+      <details>
+        <summary>プロンプトのデータはどこに保存されますか?</summary>
+        <div class="a">すべてお使いのブラウザ内 (chrome.storage) に保存されます。プロンプトの内容が外部サーバーに送信されることはありません。通信が発生するのはPro版のライセンスキー検証時のみで、その際もキーとデバイスIDのみを送信します。</div>
+      </details>
+      <details>
+        <summary>Pro版は何台のパソコンで使えますか?</summary>
+        <div class="a">1つのライセンスキーで3台まで有効化できます。買い替え等の際は、設定画面から古いデバイスを解除すれば新しいデバイスで使えます。</div>
+      </details>
+      <details>
+        <summary>サブスクリプションですか?</summary>
+        <div class="a">いいえ、¥3,980の買い切りです。月額・年額の費用は一切かかりません。今後のアップデートも追加費用なしで利用できます。</div>
+      </details>
+      <details>
+        <summary>ライセンスキーが届きません</summary>
+        <div class="a">決済完了後、数分以内に登録メールアドレスへ自動送信されます。届かない場合は迷惑メールフォルダをご確認のうえ、下記のお問い合わせ先までご連絡ください。</div>
+      </details>
+      <details>
+        <summary>ライセンスキーを紛失しました</summary>
+        <div class="a">購入時のメールアドレスを添えてお問い合わせください。確認のうえ再送いたします。</div>
+      </details>
+      <details>
+        <summary>返金はできますか?</summary>
+        <div class="a">デジタル商品の性質上、原則として返金は承っておりません。ただし、拡張機能が正常に動作しない不具合がある場合は、購入後14日以内にご連絡いただければ調査・対応いたします (詳細は利用規約をご覧ください)。</div>
+      </details>
+      <details>
+        <summary>会社のPCでも使えますか?</summary>
+        <div class="a">技術的には利用可能ですが、拡張機能のインストールが組織のポリシーで制限されている場合があります。所属組織のルールに従ってご利用ください。</div>
+      </details>
+      <details>
+        <summary>領収書は発行できますか?</summary>
+        <div class="a">決済完了メールに記載のリンクから、Stripe発行の領収書をダウンロードできます。宛名変更等が必要な場合はお問い合わせください。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-band">
+  <h2>そのプロンプト、次は <span style="color:var(--accent)">2秒</span> で呼び出せます。</h2>
+  <p>無料で10個まで。クレジットカード登録も不要です。</p>
+  <div class="cta">
+    <a class="btn btn-primary" href="#pricing">無料で始める</a>
+    <a class="btn btn-ghost" href="https://buy.stripe.com/test_aFa8wI8PI4kf4cdgVGeME00" target="_blank" rel="noopener">Pro を購入する (¥3,980)</a>
+  </div>
+</section>
+
+<!-- ============ フッター ============ -->
+<footer class="site">
+  <div class="container cols">
+    <div>
+      <div class="brand" style="font-size:15px; margin-bottom:10px;">
+        <img src="./assets/icon-128.png" alt="" style="width:24px;height:24px;">
+        Promptly
+      </div>
+      <div>&copy; 2026 Promptly</div>
+    </div>
+    <div class="links">
+      <a href="./legal/terms.html">利用規約</a>
+      <a href="./legal/privacy.html">プライバシーポリシー</a>
+      <a href="./legal/tokushoho.html">特定商取引法に基づく表記</a>
+      <a href="mailto:promptly.support@gmail.com">お問い合わせ</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
